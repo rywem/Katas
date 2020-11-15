@@ -10,18 +10,14 @@ namespace CodingKatas.UnitTests.Ardalis.GreedTests
     {
 
         private GreedScorer _scorer = new GreedScorer();
-        [Fact]
-        public void Returns100GivenSingleOne()
-        {
-            var result = _scorer.ScoreRoll(1);
-            result.Should().Be(100);
-        }
+        [Theory]
+        [InlineData(100, 1)]
+        [InlineData(200, 1, 1)]
 
-        [Fact]
-        public void Returns200GivenTwoOnes()
+        public void Returns100PerOneFewerThanThree(int expectedValue, params int[] ones )
         {
-            var result = _scorer.ScoreRoll(1, 1);            
-            result.Should().Be(200);
+            var result = _scorer.ScoreRoll(ones);
+            result.Should().Be(expectedValue);
         }
 
         [Theory]
@@ -35,11 +31,14 @@ namespace CodingKatas.UnitTests.Ardalis.GreedTests
             result.Should().Be(0);
         }
 
-        [Fact]
-        public void Return50GivenSingleFive()
+        [Theory]
+        [InlineData(50, 5)]
+        [InlineData(100, 5, 5)]
+
+        public void Returns50PerFiveFewerThanThree( int expectedValue, params int[] fives )
         {
-            var result = _scorer.ScoreRoll(5);
-            result.Should().Be(50);
+            var result = _scorer.ScoreRoll(fives);
+            result.Should().Be(expectedValue);
         }
     }
 }
