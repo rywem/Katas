@@ -19,35 +19,5 @@ namespace CodingKatas.Ardalis.Greed
             
             return 200;
         }
-    }
-
-    public class Dice : IEquatable<Dice>
-    {
-        public int CurrentRoll { get; set; }
-        private Random _random;
-        public Dice()
-        {
-
-        }
-
-        public Dice(Random random)
-        {
-            _random = random;
-        }
-
-        public int Roll()
-        {
-            Random random = new Random();
-            CurrentRoll = random.Next(1, 6);
-            return CurrentRoll;
-        }
-
-        public bool Equals( [AllowNull] Dice other )
-        {
-            if ( other == null )
-                return false;
-
-            return this.CurrentRoll == other.CurrentRoll;
-        }
-    }
+    }   
 }
