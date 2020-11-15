@@ -7,30 +7,39 @@ namespace CodingKatas.Ardalis.Greed
 {
     public class GreedScorer
     {
+
+        private Dictionary<int, int> _dieValueCounts = new Dictionary<int, int>();
         public int ScoreRoll( params int[] dieValues )
         {
+
+            for ( int i = 1; i <= 6; i++ )
+            {
+                _dieValueCounts.Add(i, dieValues.Count(die => die == i));
+            }
+
             int score = 0;
 
-            int oneCount = dieValues.Count(i => i == 1);
-            if ( oneCount >= 3 )
+            if ( _dieValueCounts[1] >= 3 )
             {
                 score += 1000;
-                oneCount -= 3;
+                _dieValueCounts[1] -= 3;
             }
-            if ( oneCount > 0 )
+            if ( _dieValueCounts[1] > 0 )
             {
-                score += oneCount * 100;
+                score += _dieValueCounts[1] * 100;
             }
+
+
+            for ( int dieValue = 2; dieValue <= 6; dieValue++ )
+            {
+                score += ScoreTripleDieValue(dieValue, 
+                    _dieValueCounts[dieValue]);
+            }            
 
             
-            score += ScoreTripleDieValue(2, dieValues.Count(i => i == 2));
-            score += ScoreTripleDieValue(3, dieValues.Count(i => i == 3));
-
-
-            int fiveCount = dieValues.Count(i => i == 5);            
-            if ( fiveCount > 0 )
+            if ( _dieValueCounts[5] > 0 )
             {
-                score += fiveCount * 50;
+                score += _dieValueCounts[5] * 50;
             }
             
             return score;
@@ -40,7 +49,11 @@ namespace CodingKatas.Ardalis.Greed
         private int ScoreTripleDieValue(int dieValue, int count )
         {
             if ( count == 3 )
+            {
+                _dieValueCounts[dieValue] -= 3;
                 return dieValue * 100;
+            }
+
             else
                 return 0;
         }
