@@ -48,7 +48,7 @@ namespace CodingKatas.Ardalis.Greed
 
         private int ScoreTripleDieValue(int dieValue, int count )
         {
-            if ( count == 3 )
+            if ( count >= 3 )
             {
                 _dieValueCounts[dieValue] -= 3;
                 return dieValue * 100;

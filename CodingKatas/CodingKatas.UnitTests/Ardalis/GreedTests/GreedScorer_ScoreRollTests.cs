@@ -74,5 +74,15 @@ namespace CodingKatas.UnitTests.Ardalis.GreedTests
             var result = _scorer.ScoreRoll(dieValues);
             result.Should().Be(expectedValue);
         }
+
+        [Theory]
+        [InlineData(1150, 1, 1, 1, 5, 1)]
+        [InlineData(0, 2, 3, 4, 6, 2)]
+        [InlineData(350, 3, 4, 5, 3, 3)]        
+        public void ReturnsExpectedValueFromSampleScoresGiven( int expectedValue, params int[] dieValues )
+        {
+            var result = _scorer.ScoreRoll(dieValues);
+            result.Should().Be(expectedValue);
+        }
     }
 }
