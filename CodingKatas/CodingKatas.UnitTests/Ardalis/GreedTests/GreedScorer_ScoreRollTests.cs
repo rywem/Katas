@@ -40,5 +40,16 @@ namespace CodingKatas.UnitTests.Ardalis.GreedTests
             var result = _scorer.ScoreRoll(fives);
             result.Should().Be(expectedValue);
         }
+
+        [Theory]
+        [InlineData(1, 5)]
+        [InlineData(5, 1)]
+
+        public void Returns150GivenOneAndFive( params int[] dieValues )
+        {
+            var result = _scorer.ScoreRoll(dieValues);
+            result.Should().Be(150);
+        }
+
     }
 }
