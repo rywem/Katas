@@ -18,6 +18,11 @@ namespace CodingKatas.Ardalis.Greed
             }
             
             int oneCount = dieValues.Count(i => i == 1);
+            if ( oneCount >= 3)
+            {
+                score += 1000;
+                oneCount -= 3;
+            }
             if ( oneCount > 0 )
             {
                 score += oneCount * 100;

@@ -14,9 +14,9 @@ namespace CodingKatas.UnitTests.Ardalis.GreedTests
         [InlineData(100, 1)]
         [InlineData(200, 1, 1)]
 
-        public void Returns100PerOneFewerThanThree(int expectedValue, params int[] ones )
+        public void Returns100PerOneFewerThanThree(int expectedValue, params int[] dieValues )
         {
-            var result = _scorer.ScoreRoll(ones);
+            var result = _scorer.ScoreRoll(dieValues);
             result.Should().Be(expectedValue);
         }
 
@@ -35,9 +35,9 @@ namespace CodingKatas.UnitTests.Ardalis.GreedTests
         [InlineData(50, 5)]
         [InlineData(100, 5, 5)]
 
-        public void Returns50PerFiveFewerThanThree( int expectedValue, params int[] fives )
+        public void Returns50PerFiveFewerThanThree( int expectedValue, params int[] dieValues )
         {
-            var result = _scorer.ScoreRoll(fives);
+            var result = _scorer.ScoreRoll(dieValues);
             result.Should().Be(expectedValue);
         }
 
@@ -49,6 +49,18 @@ namespace CodingKatas.UnitTests.Ardalis.GreedTests
         {
             var result = _scorer.ScoreRoll(dieValues);
             result.Should().Be(150);
+        }
+
+        [Theory]
+        [InlineData(1000, 1, 1, 1)]
+        [InlineData(1000, 1, 1, 1, 6)]
+        [InlineData(1050, 1, 1, 1, 5)]
+        [InlineData(1100, 1, 1, 1, 1)]
+
+        public void ReturnsTripleOneScoreAndOtherScoringValues( int expectedValue, params int[] dieValues )
+        {
+            var result = _scorer.ScoreRoll(dieValues);
+            result.Should().Be(expectedValue);
         }
 
     }
