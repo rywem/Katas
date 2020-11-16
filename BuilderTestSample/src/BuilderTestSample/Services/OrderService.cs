@@ -23,7 +23,9 @@ namespace BuilderTestSample.Services
 
             if ( order.TotalAmount <= 0 )
                 throw new InvalidOrderException("Order Amount must be greater than 0");
-            // TODO: order must have a customer (customer is not null)
+            
+            if ( order.Customer == null )
+                throw new InvalidOrderException("Customer cannot be null");
 
             ValidateCustomer(order.Customer);
         }
@@ -34,6 +36,8 @@ namespace BuilderTestSample.Services
             // create a CustomerBuilder to implement the tests for these scenarios
 
             // TODO: customer must have an ID > 0
+            if ( customer.Id <= 0 )
+                throw new InvalidCustomerException("Customer must have Id greater than 0.");
             // TODO: customer must have an address (it is not null)
             // TODO: customer must have a first and last name
             // TODO: customer must have credit rating > 200 (otherwise throw InsufficientCreditException)
