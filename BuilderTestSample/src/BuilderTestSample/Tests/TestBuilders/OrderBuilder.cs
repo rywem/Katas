@@ -36,8 +36,14 @@ namespace BuilderTestSample.Tests.TestBuilders
         {
             _order.TotalAmount = 100m;
 
+
+            CustomerBuilder customerbuilder = new CustomerBuilder();
+
             // TODO: replace next lines with a CustomerBuilder you create
-            // _order.Customer = new Customer();
+            _order.Customer = customerbuilder
+                               .Id(10)
+                               .WithTestValues()
+                               .Build();
             // _order.Customer.HomeAddress = new Address();
          
             return this;

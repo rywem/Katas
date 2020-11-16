@@ -37,8 +37,9 @@ namespace BuilderTestSample.Tests
         [Fact]
         public void ThrowsExceptionGivenNullCustomer()
         {
-            var order = _orderBuilder                        
-                        .Amount(10)
+            var order = _orderBuilder 
+                        .WithTestValues()
+                        .Customer(null)
                         .Id(0)
                         .Build();
 
@@ -51,7 +52,59 @@ namespace BuilderTestSample.Tests
         public void ThrowsExceptionGivenCustomerIdIs0(int customerId)
         {
             var customer = _customerBuilder
+                            .WithTestValues()
                             .Id(customerId)
+                            .Build();
+
+            var order = _orderBuilder
+                        .WithTestValues()
+                        .Customer(customer)
+                        .Build();
+
+            Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
+        }
+
+        [Fact]
+        public void ThrowsExceptionGivenAddressIsNull()
+        {            
+            var customer = _customerBuilder
+                            .WithTestValues()
+                            .Address(null)
+                            .Build();
+
+            var order = _orderBuilder
+                        .Amount(10)
+                        .Id(0)
+                        .Customer(customer)
+                        .Build();
+
+            Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
+        }
+
+
+        [Fact]
+        public void ThrowsExceptionGivenFirstNameIsEmpty()
+        {
+            var customer = _customerBuilder
+                            .WithTestValues()                            
+                            .FirstName(string.Empty)
+                            .Build();
+
+            var order = _orderBuilder
+                        .Amount(10)
+                        .Id(0)
+                        .Customer(customer)
+                        .Build();
+
+            Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
+        }
+
+        [Fact]
+        public void ThrowsExceptionGivenLastNameIsEmpty()
+        {
+            var customer = _customerBuilder
+                            .WithTestValues()
+                            .LastName(string.Empty)
                             .Build();
 
             var order = _orderBuilder
