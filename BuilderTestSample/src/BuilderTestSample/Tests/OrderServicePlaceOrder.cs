@@ -306,5 +306,22 @@ namespace BuilderTestSample.Tests
 
             Assert.True(order.IsExpedited);
         }
+
+        [Fact]
+        public void OrderAddedToHistory_TotalAmountUpdated()
+        {
+            var customer = _customerBuilder
+                            .WithTestValues()                            
+                            .Build();
+
+            var order = _orderBuilder
+                        .WithTestValues()
+                        .Customer(customer)
+                        .Build();
+
+            _orderService.PlaceOrder(order);
+
+            Assert.Equal(100, order.Customer.TotalPurchases);
+        }
     }
 }
