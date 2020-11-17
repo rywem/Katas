@@ -217,5 +217,28 @@ namespace BuilderTestSample.Tests
 
             Assert.Throws<InvalidAddressException>(() => _orderService.PlaceOrder(order));
         }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void ThrowsExceptionIfAddressPostalCodeIsNullOrEmpty( string input )
+        {
+            var address = _addressBuilder
+                          .WithTestValues()
+                          .PostalCode(input)
+                          .Build();
+
+            var customer = _customerBuilder
+                            .WithTestValues()
+                            .Address(address)
+                            .Build();
+
+            var order = _orderBuilder
+                        .WithTestValues()
+                        .Customer(customer)
+                        .Build();
+
+            Assert.Throws<InvalidAddressException>(() => _orderService.PlaceOrder(order));
+        }
     }
 }

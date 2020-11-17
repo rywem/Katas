@@ -31,12 +31,18 @@ namespace BuilderTestSample.Tests.TestBuilders
             _address.State = state;
             return this;
         }
+        public AddressBuilder PostalCode(string postalCode)
+        {
+            _address.PostalCode = postalCode;
+            return this;
+        }
 
         public AddressBuilder WithTestValues()
         {
             _address.Street1 = "123 Apple St.";
             _address.City = "New York City";
             _address.State = "NY";
+            _address.PostalCode = "11223";
             return this;
         }
     }
