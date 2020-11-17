@@ -37,12 +37,19 @@ namespace BuilderTestSample.Tests.TestBuilders
             return this;
         }
 
+        public AddressBuilder Country( string country )
+        {
+            _address.Country = country;
+            return this;
+        }
+
         public AddressBuilder WithTestValues()
         {
             _address.Street1 = "123 Apple St.";
             _address.City = "New York City";
             _address.State = "NY";
             _address.PostalCode = "11223";
+            _address.Country = "USA";
             return this;
         }
     }
