@@ -10,6 +10,7 @@ namespace BuilderTestSample.Tests.TestBuilders
         private Address _Address;
         private string _FirstName;
         private string _LastName;
+        private int _CreditRating;
         private const int TEST_ID = 176;
         public CustomerBuilder Id(int id)
         {
@@ -35,11 +36,19 @@ namespace BuilderTestSample.Tests.TestBuilders
             return this;
         }
 
+        public CustomerBuilder CreditRating( int creditRating )
+        {
+            _CreditRating = creditRating;
+            return this;
+        }
+
         public Customer Build()
         {
             return new Customer(_Id)
             {
-                HomeAddress = _Address
+                HomeAddress = _Address,
+                FirstName = _FirstName,
+                LastName = _LastName
             };
         }
 
@@ -49,6 +58,7 @@ namespace BuilderTestSample.Tests.TestBuilders
             _Address = new Address();
             _FirstName = "FirstTest";
             _LastName = "LastTest";
+            _CreditRating = 250;
             return this;
         }
     }
