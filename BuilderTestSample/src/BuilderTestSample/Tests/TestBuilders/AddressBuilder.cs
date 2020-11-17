@@ -26,10 +26,17 @@ namespace BuilderTestSample.Tests.TestBuilders
             return this;
         }
 
+        public AddressBuilder State( string state )
+        {
+            _address.State = state;
+            return this;
+        }
+
         public AddressBuilder WithTestValues()
         {
             _address.Street1 = "123 Apple St.";
             _address.City = "New York City";
+            _address.State = "NY";
             return this;
         }
     }

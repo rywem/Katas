@@ -54,13 +54,14 @@ namespace BuilderTestSample.Services
         private void ValidateAddress(Address homeAddress)
         {
             // throw InvalidAddressException unless otherwise noted
-
             if ( string.IsNullOrEmpty(homeAddress.Street1) )
                 throw new InvalidAddressException("Street cannot be null or empty.");
-            // TODO: city is required (not null or empty)
+            
             if ( string.IsNullOrEmpty(homeAddress.City) )
                 throw new InvalidAddressException("City cannot be null or empty.");
-            // TODO: state is required (not null or empty)
+            
+            if ( string.IsNullOrEmpty(homeAddress.State) )
+                throw new InvalidAddressException("State cannot be null or empty");
             // TODO: postalcode is required (not null or empty)
             // TODO: country is required (not null or empty)
         }

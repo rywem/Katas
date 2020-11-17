@@ -149,12 +149,14 @@ namespace BuilderTestSample.Tests
             Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
         }
 
-        [Fact]
-        public void ThrowsExceptionIfAddressStreetIsNullOrEmpty()
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void ThrowsExceptionIfAddressStreetIsNullOrEmpty(string input)
         {
             var address = _addressBuilder
                           .WithTestValues()
-                          .Street1(string.Empty)
+                          .Street1(input)
                           .Build();
 
             var customer = _customerBuilder
@@ -170,12 +172,37 @@ namespace BuilderTestSample.Tests
             Assert.Throws<InvalidAddressException>(() => _orderService.PlaceOrder(order));
         }
 
-        [Fact]
-        public void ThrowsExceptionIfAddressCityIsNullOrEmpty()
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void ThrowsExceptionIfAddressCityIsNullOrEmpty(string input)
         {
             var address = _addressBuilder
                           .WithTestValues()
-                          .City(string.Empty)
+                          .City(input)
+                          .Build();
+
+            var customer = _customerBuilder
+                            .WithTestValues()
+                            .Address(address)
+                            .Build();
+
+            var order = _orderBuilder
+                        .WithTestValues()
+                        .Customer(customer)
+                        .Build();
+
+            Assert.Throws<InvalidAddressException>(() => _orderService.PlaceOrder(order));
+        }
+
+        [Theory]
+        [InlineData("")]
+        [InlineData(null)]
+        public void ThrowsExceptionIfAddressStateIsNullOrEmpty(string input)
+        {
+            var address = _addressBuilder
+                          .WithTestValues()
+                          .State(input)
                           .Build();
 
             var customer = _customerBuilder
