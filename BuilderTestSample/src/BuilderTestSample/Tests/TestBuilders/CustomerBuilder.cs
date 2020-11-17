@@ -6,69 +6,75 @@ namespace BuilderTestSample.Tests.TestBuilders
 {
     public class CustomerBuilder
     {
-        private int _Id;
-        private Address _Address;
-        private string _FirstName;
-        private string _LastName;
-        private int _CreditRating;
-        private decimal _TotalPurchases;
+        private int _id;
+        private Address _address;
+        private string _firstName;
+        private string _lastName;
+        private int _creditRating;
+        private decimal _totalPurchases;
         private const int TEST_ID = 176;
-        public CustomerBuilder Id(int id)
+        public CustomerBuilder Id( int id )
         {
-            _Id = id;
+            _id = id;
             return this;
         }
 
         public CustomerBuilder Address( Address address )
         {
-            _Address = address;
+            _address = address;
             return this;
         }
 
         public CustomerBuilder FirstName( string firstName )
         {
-            _FirstName = firstName;
+            _firstName = firstName;
             return this;
         }
 
         public CustomerBuilder LastName( string lastName )
         {
-            _LastName = lastName;
+            _lastName = lastName;
             return this;
         }
 
         public CustomerBuilder CreditRating( int creditRating )
         {
-            _CreditRating = creditRating;
+            _creditRating = creditRating;
             return this;
         }
 
-        public CustomerBuilder TotalPurchases(decimal totalPurchases )
+        public CustomerBuilder TotalPurchases( decimal totalPurchases )
         {
-            _TotalPurchases = totalPurchases;
+            _totalPurchases = totalPurchases;
             return this;
         }
 
         public Customer Build()
         {
-            return new Customer(_Id)
+            return new Customer(_id)
             {
-                HomeAddress = _Address,
-                FirstName = _FirstName,
-                LastName = _LastName,
-                CreditRating = _CreditRating,
-                TotalPurchases = _TotalPurchases
+                HomeAddress = _address,
+                FirstName = _firstName,
+                LastName = _lastName,
+                CreditRating = _creditRating,
+                TotalPurchases = _totalPurchases
             };
         }
 
         public CustomerBuilder WithTestValues()
         {
-            _Id = TEST_ID;
-            _Address = new Address();
-            _FirstName = "FirstTest";
-            _LastName = "LastTest";
-            _CreditRating = 250;
-            _TotalPurchases = 25;
+            _id = TEST_ID;
+            _firstName = "FirstTest";
+            _lastName = "LastTest";
+            _creditRating = 250;
+            _totalPurchases = 25;
+
+            AddressBuilder addressBuilder = new AddressBuilder();
+
+            _address = addressBuilder
+                       .WithTestValues()
+                       .Build();
+
             return this;
         }
     }
