@@ -39,12 +39,10 @@ namespace BuilderTestSample.Tests.TestBuilders
 
             CustomerBuilder customerbuilder = new CustomerBuilder();
 
-            // TODO: replace next lines with a CustomerBuilder you create
             _order.Customer = customerbuilder
                                .Id(10)
                                .WithTestValues()
                                .Build();
-            // _order.Customer.HomeAddress = new Address();
          
             return this;
         }
