@@ -11,6 +11,7 @@ namespace BuilderTestSample.Tests.TestBuilders
         private string _FirstName;
         private string _LastName;
         private int _CreditRating;
+        private decimal _TotalPurchases;
         private const int TEST_ID = 176;
         public CustomerBuilder Id(int id)
         {
@@ -42,13 +43,21 @@ namespace BuilderTestSample.Tests.TestBuilders
             return this;
         }
 
+        public CustomerBuilder TotalPurchases(decimal totalPurchases )
+        {
+            _TotalPurchases = totalPurchases;
+            return this;
+        }
+
         public Customer Build()
         {
             return new Customer(_Id)
             {
                 HomeAddress = _Address,
                 FirstName = _FirstName,
-                LastName = _LastName
+                LastName = _LastName,
+                CreditRating = _CreditRating,
+                TotalPurchases = _TotalPurchases
             };
         }
 
@@ -59,6 +68,7 @@ namespace BuilderTestSample.Tests.TestBuilders
             _FirstName = "FirstTest";
             _LastName = "LastTest";
             _CreditRating = 250;
+            _TotalPurchases = 25;
             return this;
         }
     }

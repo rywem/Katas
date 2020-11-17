@@ -17,7 +17,6 @@ namespace BuilderTestSample.Model
         public Address HomeAddress { get; set; }
         public int CreditRating { get; set; }
         public decimal TotalPurchases { get; set; }
-
         public List<Order> OrderHistory { get; set; } = new List<Order>();
     }
 }

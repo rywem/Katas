@@ -117,7 +117,7 @@ namespace BuilderTestSample.Tests
         }
 
         [Fact]
-        public void ThrowsExceptionIfCreditRatingBelow200()
+        public void ThrowsExceptionIfCreditRating200OrLess()
         {
             var customer = _customerBuilder
                             .WithTestValues()
@@ -130,6 +130,22 @@ namespace BuilderTestSample.Tests
                         .Build();
 
             Assert.Throws<InsufficientCreditException>(() => _orderService.PlaceOrder(order));
+        }
+
+        [Fact]
+        public void ThrowsExceptionIfTotalPurchasesLessThan0()
+        {
+            var customer = _customerBuilder
+                            .WithTestValues()
+                            .TotalPurchases(-1)
+                            .Build();
+
+            var order = _orderBuilder
+                        .WithTestValues()
+                        .Customer(customer)
+                        .Build();
+
+            Assert.Throws<InvalidCustomerException>(() => _orderService.PlaceOrder(order));
         }
     }
 }
