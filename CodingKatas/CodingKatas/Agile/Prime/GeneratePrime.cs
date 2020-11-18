@@ -8,9 +8,7 @@ namespace CodingKatas.Agile.Prime
     {
         /// <summary>
         /// From Chapter 5, Refactoring. Listing 5-1
-        /// </summary>
-        /// <param name="maxValue"></param>
-        /// <returns></returns>
+        /// </summary>        
         public static int[] GeneratePrimeNumbers(int maxValue)
         {
             if ( maxValue >= 2 )
