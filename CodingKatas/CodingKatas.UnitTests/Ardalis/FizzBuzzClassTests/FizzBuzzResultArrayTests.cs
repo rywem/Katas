@@ -29,60 +29,44 @@ namespace CodingKatas.UnitTests.Ardalis.FizzBuzzTests
             FizzBuzzClass fizzBuzzClass = new FizzBuzzClass();
             var results = fizzBuzzClass.FizzBuzzResultArray();
             string one = results[index];
-            Assert.Equal(expected, one);
-            /*
-            string two = results[1];
-            Assert.Equal("2", two);
-            string four = results[3];
-            Assert.Equal("4", four);
-            string seven = results[6];
-            Assert.Equal("7", seven);
-
-            string fiftyOne = results[50];
-            Assert.Equal("51", fiftyOne);
-
-            string ninetyEight = results[97];
-            Assert.Equal("98", ninetyEight);
-            */
+            Assert.Equal(expected, one);            
         }
 
-        [Fact]
-        public void WhenDivisibleBy3_PrintFizz()
+        [Theory]
+        [InlineData(2)]
+        [InlineData(5)]        
+        public void WhenDivisibleBy3_PrintFizz(int index)
         {
             FizzBuzzClass fizzBuzzClass = new FizzBuzzClass();
             var results = fizzBuzzClass.FizzBuzzResultArray();
             
-            string three = results[2];
-            Assert.Equal("Fizz", three);
-
-            string six = results[5];
-            Assert.Equal("Fizz", six);
+            string fizz = results[index];
+            Assert.Equal("Fizz", fizz);
+            
         }
 
-        [Fact]
-        public void WhenDivisibleBy5_PrintBuzz()
+        [Theory]
+        [InlineData(4)]
+        [InlineData(9)]
+        public void WhenDivisibleBy5_PrintBuzz(int index)
         {
             FizzBuzzClass fizzBuzzClass = new FizzBuzzClass();
             var results = fizzBuzzClass.FizzBuzzResultArray();
             
-            string five = results[4];
-            Assert.Equal("Buzz", five);
-
-            string ten = results[9];
-            Assert.Equal("Buzz", ten);
+            string buzz = results[index];
+            Assert.Equal("Buzz", buzz);
         }
 
-        [Fact]
-        public void WhenDivisibleBy3And5_PrintFizzBuzz()
+        [Theory]
+        [InlineData(14)]
+        [InlineData(29)]
+        public void WhenDivisibleBy3And5_PrintFizzBuzz(int index)
         {
             FizzBuzzClass fizzBuzzClass = new FizzBuzzClass();
             var results = fizzBuzzClass.FizzBuzzResultArray();
 
-            string fifteen = results[14];
-            Assert.Equal("FizzBuzz", fifteen);
-
-            string thirty = results[29];
-            Assert.Equal("FizzBuzz", thirty);
+            string fizzBuzz = results[index];
+            Assert.Equal("FizzBuzz", fizzBuzz);
         }
     }
 }
