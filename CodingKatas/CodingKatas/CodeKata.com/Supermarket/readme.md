@@ -21,3 +21,6 @@ The goal of this kata is to practice a looser style of experimental modelling. L
 
 ### Reference
 [CodeKata Supermarket Kata](http://codekata.com/kata/kata01-supermarket-pricing/)
+
+### Personal Notes
+The Kata instructions say no coding is involved, but I decided that it was a better learning experience to actually produce some code.
