@@ -34,8 +34,6 @@ namespace CodingKatas.Ardalis.FizzBuzz
 
                 if ( currentNumber % 3 == 0 && currentNumber % 5 == 0 )
                     results[i] = "FizzBuzz";
-
-
             }
 
             return results;
