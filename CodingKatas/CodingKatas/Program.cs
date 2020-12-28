@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CodingKatas.ProjectEuler.Problem023;
+using System;
 
 namespace CodingKatas
 {
@@ -6,7 +7,17 @@ namespace CodingKatas
     {
         static void Main( string[] args )
         {
-            Console.WriteLine("Hello World!");
+            NonAbundantSums nonAbundant = new NonAbundantSums();
+
+            //var list = nonAbundant.SumAbundants();
+
+            //foreach (var item in list)
+            //{
+            //    Console.WriteLine(item);
+            //}
+
+            var sum = nonAbundant.SumOfNonAbundants();
+            Console.WriteLine(sum);
         }
     }
 }
