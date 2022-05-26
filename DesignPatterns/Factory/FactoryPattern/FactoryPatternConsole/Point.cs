@@ -4,22 +4,16 @@ namespace FactoryPatternConsole
 	public class Point
 	{
 		private double x, y;
-		private Point(double x, double y)
+		internal Point(double x, double y)
 		{
 			this.x = x;
 			this.y = y;
 		}
 
-		// Factory method
-		public static Point NewCartesianPoint(double x, double y)
+        public override string ToString()
         {
-			return new Point(x, y);
+			return $"{nameof(x)}: {x}, {nameof(y)}: {y}";
         }
-
-		public static Point NewPolarPoint(double rho, double theta)
-        {
-			return new Point(rho*Math.Cos(theta), rho*Math.Sin(theta));
-        }
-	}
+    }
 }
 
